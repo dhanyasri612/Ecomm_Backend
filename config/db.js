@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 export const connectDB = () => {
+  if (!process.env.DB_URL) {
+    throw new Error("DB_URL is not defined. Check backend/config/.env loading.");
+  }
+
   mongoose
     .connect(process.env.DB_URL)
     .then((data) => {

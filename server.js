@@ -2,8 +2,13 @@ import app from "./app.js";
 import dotenv from "dotenv";
 import { connectDB } from "./config/db.js";
 import { v2 as cloudinary } from "cloudinary";
+import path from "path";
+import { fileURLToPath } from "url";
 
-dotenv.config({ path: "backend/config/.env" });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, "config/.env") });
 const PORT = process.env.PORT || 3000;
 
 /* app.get("/", (req, res) => {
