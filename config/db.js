@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 
 export const connectDB = () => {
   if (!process.env.DB_URL) {
-    throw new Error("DB_URL is not defined. Check backend/config/.env loading.");
+    throw new Error(
+      "DB_URL is not defined. Check backend/config/.env loading.",
+    );
   }
 
   mongoose
