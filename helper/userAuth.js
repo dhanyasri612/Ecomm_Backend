@@ -3,8 +3,12 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
 export const verifyUser = async (req, res, next) => {
-  const { token } = req.cookies;
-  console.log(token);
+  let token = req.cookies?.token;
+
+  if (!token && req.headers.authorization?.startsWith("Bearer ")) {
+    token = req.headers.authorization.split(" ")[1];
+  }
+
   if (!token) {
     return next(new HandleError("Access denied please login to access", 401));
   }
